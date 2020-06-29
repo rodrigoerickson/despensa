@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Accordion, Card, Button } from 'react-bootstrap/';
 
-function Pantry(props) {
+function Section(props) {
     return (
         <Accordion defaultActiveKey="0">
             <Card>
@@ -19,4 +19,4 @@ function Pantry(props) {
     );
 }
 
-export default Pantry;
+export default Section;

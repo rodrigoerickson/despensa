@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import PantryList from './components/pantry-list/pantry-list'
+import SectionList from './components/section-list/section-list'
 
 function App() {
     return (
@@ -11,7 +11,7 @@ function App() {
             </h3>
             <hr />
             <div className="mt-3">
-                <PantryList />
+                <SectionList />
             </div>
         </div>
     );

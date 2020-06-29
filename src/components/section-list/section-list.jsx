@@ -1,5 +1,5 @@
 import React from 'react';
-import Pantry from './pantry/pantry'
+import Section from './section/section'
 
 const getSections = [
     {
@@ -12,15 +12,15 @@ const getSections = [
     }
 ]
 
-function PantryList() {
+function SectionList() {
     return (
         <div>
             {getSections.map(val =>{
-                return <Pantry section={val} />
+                return <Section section={val} />
             })}
             
         </div>
     );
 }
 
-export default PantryList;
+export default SectionList;
