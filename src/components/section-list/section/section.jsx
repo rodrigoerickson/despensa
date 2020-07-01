@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Accordion, Card, Button } from 'react-bootstrap/';
+import SubSection from './sub-section/sub-section'
 
 function Section(props) {
     return (
@@ -12,7 +13,9 @@ function Section(props) {
                     </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
-                    <Card.Body>Hello! I'm another body</Card.Body>
+                    <Card.Body>
+                        <SubSection subSections={props.section.subSections}></SubSection>
+                    </Card.Body>
                 </Accordion.Collapse>
             </Card>
         </Accordion>
