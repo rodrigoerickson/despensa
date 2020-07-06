@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Section from './section/section'
 
 const getSections = [
@@ -32,15 +32,15 @@ const getSections = [
     }
 ]
 
-function SectionList() {
-    return (
-        <div>
-            {getSections.map(val =>{
-                return <Section section={val} />
-            })}
-            
-        </div>
-    );
+export default class SectionList extends Component {
+    render(){
+        return (
+            <div>
+                {getSections.map(val =>{
+                    return <Section section={val} />
+                })}
+                
+            </div>
+        );
+    }
 }
-
-export default SectionList;
