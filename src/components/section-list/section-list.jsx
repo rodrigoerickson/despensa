@@ -8,11 +8,13 @@ const getSections = [
         subSections:[
             {
                 id:'1',
-                label:'Alimentos Básicos'
+                label:'Alimentos Básicos',
+                amount:2
             },
             {
                 id:'2',
-                label:'Ervas-Mate'
+                label:'Ervas-Mate',
+                amount:2
             }
         ]
     },
@@ -22,11 +24,13 @@ const getSections = [
         subSections:[
             {
                 id:'1',
-                label:'Uso geral'
+                label:'Uso geral',
+                amount:2
             },
             {
                 id:'2',
-                label:'Roupas'
+                label:'Roupas',
+                amount:2
             }
         ]
     }

@@ -1,21 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Button from '../../../shared/button/button'
 
-function labelSubSection(props){
-    return props.subSections.map(val =>{
-        return (<div>
-                {val.label}
-                <Button></Button>
-                </div>)
-    })
-}
+export default class SubSection extends Component {
 
-function SubSection(props) {
-    return (
-        <div>
-            {labelSubSection(props)}
-        </div>
+    constructor(props) {
+        super(props);
+        this.add = this.add.bind(this);
+        this.remove = this.remove.bind(this);
+        this.state = {...props.subSections};
+    }
+
+    lineSubSection = (props) => {
+        return props.subSections.map((val, index) => {
+            return (
+                <div>
+                    {val.label}
+                    <input type="text" value={this.state[index].amount}></input>
+                    <Button label="adicionar" amount={val.amount} click={this.add} index={index}></Button>
+                    <Button label="remover" amount={val.amount} click={this.remove} index={index}></Button>
+                </div>
+            )
+        })
+    }
+
+    add(amount, index){
+        this.state[index].amount = this.state[index].amount+1
+        this.setState({ amount})
+    }
+
+    remove(amount, index){
+        this.state[index].amount = this.state[index].amount-1
+        this.setState({ amount})
+    }
+
+    render() {
+        return (
+            <div>
+                {this.lineSubSection(this.props)}
+            </div>
         );
+    }
 }
-
-export default SubSection;
