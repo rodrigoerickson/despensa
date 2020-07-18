@@ -1,14 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
+
+import App from './App';
+import Report from './components/report/report'
+
+import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <BrowserRouter>
+        <Link to="/">App</Link> | 
+        <Link to="/relatorio"> Relatório</Link>
+        <Switch>
+            <Route path="/" exact={true} component={App} />
+            <Route path="/relatorio" component={Report} />
+        </Switch>
+    </ BrowserRouter>
+  ,
   document.getElementById('root')
 );
 
