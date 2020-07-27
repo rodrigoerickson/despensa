@@ -9,7 +9,7 @@ function Section(props) {
             <Card>
                 <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                        {props.section.label}
+                        {props.section.name}
                     </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">

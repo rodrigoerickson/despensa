@@ -13,31 +13,27 @@ export default class SubSection extends Component {
     lineSubSection = (props) => {
         return props.subSections.map((val, index) => {
             return (
-                <div>
-                    {val.label}
+                <div key={val._id}>
+                    {val.name}
                     <input type="text" value={this.state[index].amount}></input>
-                    <Button label="adicionar" amount={val.amount} click={this.add} index={index}></Button>
-                    <Button label="remover" amount={val.amount} click={this.remove} index={index}></Button>
+                    <Button label="adicionar" amount={parseInt(val.amount)} click={this.add} index={index}></Button>
+                    <Button label="remover" amount={parseInt(val.amount)} click={this.remove} index={index}></Button>
                 </div>
             )
         })
     }
 
     add(amount, index){
-        this.state[index].amount = this.state[index].amount+1
-        this.setState({ amount})
+        this.state[index].amount = parseInt(this.state[index].amount)+1;
+        this.setState({ amount});
     }
 
     remove(amount, index){
-        this.state[index].amount = this.state[index].amount-1
-        this.setState({ amount})
+        this.state[index].amount = parseInt(this.state[index].amount)-1;
+        this.setState({ amount});
     }
 
     render() {
-        return (
-            <div>
-                {this.lineSubSection(this.props)}
-            </div>
-        );
+        return (<div>{this.lineSubSection(this.props)}</div>);
     }
 }

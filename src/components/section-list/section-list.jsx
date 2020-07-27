@@ -1,49 +1,29 @@
 import React, {Component} from 'react';
-import Section from './section/section'
+import Section from './section/section';
+import axios from 'axios';
 
-const getSections = [
-    {
-        id:'1',
-        label:'Mercearia',
-        subSections:[
-            {
-                id:'1',
-                label:'Alimentos Básicos',
-                amount:2
-            },
-            {
-                id:'2',
-                label:'Ervas-Mate',
-                amount:2
-            }
-        ]
-    },
-    {
-        id:'1',
-        label:'Limpeza',
-        subSections:[
-            {
-                id:'1',
-                label:'Uso geral',
-                amount:2
-            },
-            {
-                id:'2',
-                label:'Roupas',
-                amount:2
-            }
-        ]
-    }
-]
+const URL = 'http://localhost:3003/api/';
 
 export default class SectionList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {list:[]};
+        this.getSections();
+    }
+
+    getSections() {
+        axios.get(`${URL}sections?sort=createdAt`)
+        .then(resp => {
+            this.setState({...this.state, list:resp.data});
+        })
+    }
+
     render(){
         return (
             <div>
-                {getSections.map(val =>{
-                    return <Section section={val} />
+                {this.state.list.map((val) =>{
+                    return <Section key={val._id} section={val} />
                 })}
-                
             </div>
         );
     }
