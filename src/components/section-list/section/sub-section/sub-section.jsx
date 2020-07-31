@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Button from '../../../shared/button/button'
+import axios from 'axios';
+const URL = 'http://localhost:3003/api';
 
 export default class SubSection extends Component {
 
@@ -10,30 +12,53 @@ export default class SubSection extends Component {
         this.state = {...props.subSections};
     }
 
-    lineSubSection = (props) => {
-        return props.subSections.map((val, index) => {
+    lineSubSection = (section, add, remove) => {
+        return section.subSections.map((val, index) => {
             return (
                 <div key={val._id}>
                     {val.name}
-                    <input type="text" value={this.state[index].amount}></input>
-                    <Button label="adicionar" amount={parseInt(val.amount)} click={this.add} index={index}></Button>
-                    <Button label="remover" amount={parseInt(val.amount)} click={this.remove} index={index}></Button>
+                    <input type="text" value={val.amount}></input>
+                    <Button label="adicionar" sectionId={section._id} subSection={val} click={add} index={index}></Button>
+                    <Button label="remover" sectionId={section._id} subSection={val} click={remove} index={index}></Button>
                 </div>
             )
         })
     }
 
-    add(amount, index){
-        this.state[index].amount = parseInt(this.state[index].amount)+1;
-        this.setState({ amount});
+    getSubSectionUpdateAmount(subSections, amount, index, subSection){
+        return subSections.map((val,i)=>{
+            if(index === i){
+                subSection.amount = amount
+                return subSection
+            }else{
+                return val
+            }
+        })
     }
 
-    remove(amount, index){
-        this.state[index].amount = parseInt(this.state[index].amount)-1;
-        this.setState({ amount});
+    add(subSection, index, sectionId){
+        const subSections = this.getSubSectionUpdateAmount(this.state.subSections,parseInt(subSection.amount)+1, index, subSection)
+        this.updateSubSection(subSections, subSection,sectionId,index)
+    }
+    
+    remove(subSection, index, sectionId){
+        const subSections = this.getSubSectionUpdateAmount(this.state.subSections,parseInt(subSection.amount)-1, index, subSection)
+        this.updateSubSection(subSections, subSection,sectionId,index);
+    }
+
+    updateSubSection(subSections, subSection,sectionId,index){
+        this.setState({subSections})
+        this.putSubSection(subSection, sectionId, index);
+    }
+    
+    putSubSection(subSection, sectionId, index){
+        const requestBody = JSON.parse(`{"subSections.${index}.amount":"${subSection.amount}"}`);
+        axios.put(`${URL}/sections/${sectionId}`, requestBody).then((resp)=>{
+            this.setState({...resp.data})
+        })
     }
 
     render() {
-        return (<div>{this.lineSubSection(this.props)}</div>);
+        return (<div>{this.lineSubSection(this.state, this.add, this.remove)}</div>);
     }
 }

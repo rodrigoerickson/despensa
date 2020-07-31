@@ -14,7 +14,7 @@ function Section(props) {
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
                     <Card.Body>
-                        <SubSection subSections={props.section.subSections}></SubSection>
+                        <SubSection subSections={props.section}></SubSection>
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
