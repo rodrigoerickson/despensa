@@ -16,10 +16,12 @@ export default class SubSection extends Component {
         return section.subSections.map((val, index) => {
             return (
                 <div key={val._id}>
-                    {val.name}
-                    <input type="text" value={val.amount}></input>
-                    <Button label="adicionar" sectionId={section._id} subSection={val} click={add} index={index}></Button>
-                    <Button label="remover" sectionId={section._id} subSection={val} click={remove} index={index}></Button>
+                    <div>
+                        {val.name} - 
+                        {val.amount} 
+                        <Button label="adicionar" sectionId={section._id} subSection={val} click={add} index={index}></Button> 
+                        <Button label="remover" sectionId={section._id} subSection={val} click={remove} index={index}></Button>
+                    </div>
                 </div>
             )
         })
