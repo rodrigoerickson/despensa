@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Button from '../../../shared/button/button'
+import {ButtonAiFillPlusCircle, ButtonAiFillMinusCircle} from '../../../shared/button/button'
 import axios from 'axios';
 
 const URL = 'http://localhost:3003/api';
@@ -15,14 +15,19 @@ export default class SubSection extends Component {
 
     lineSubSection = (section, add, remove) => {
         return section.subSections.map((val, index) => {
+            const variables = {
+                sectionId:section._id,
+                subSection:val,
+                index
+            }
             return (
                 <div key={val._id} className="d-flex justify-content-center">
                     <div className="row w-75 d-flex justify-content-center">
                         <div className="col-3">{val.name}</div>
                         <div className="col-1">{val.amount}</div>
                         <div className="col-4">
-                            <Button label="adicionar" sectionId={section._id} subSection={val} click={add} index={index}></Button> 
-                            <Button label="remover" sectionId={section._id} subSection={val} click={remove} index={index}></Button>
+                            <ButtonAiFillPlusCircle  variables={variables} click={add}></ButtonAiFillPlusCircle>
+                            <ButtonAiFillMinusCircle  variables={variables} click={remove}></ButtonAiFillMinusCircle>
                         </div>
                     </div>
                 </div>
@@ -41,14 +46,14 @@ export default class SubSection extends Component {
         })
     }
 
-    add(subSection, index, sectionId){
-        const subSections = this.getSubSectionUpdateAmount(this.state.subSections,parseInt(subSection.amount)+1, index, subSection)
-        this.updateSubSection(subSections, subSection,sectionId,index)
+    add(variables){
+        const subSections = this.getSubSectionUpdateAmount(this.state.subSections,parseInt(variables.subSection.amount)+1, variables.index, variables.subSection);
+        this.updateSubSection(subSections, variables.subSection,variables.sectionId,variables.index);
     }
     
-    remove(subSection, index, sectionId){
-        const subSections = this.getSubSectionUpdateAmount(this.state.subSections,parseInt(subSection.amount)-1, index, subSection)
-        this.updateSubSection(subSections, subSection,sectionId,index);
+    remove(variables){
+        const subSections = this.getSubSectionUpdateAmount(this.state.subSections,parseInt(variables.subSection.amount)-1, variables.index, variables.subSection);
+        this.updateSubSection(subSections, variables.subSection,variables.sectionId,variables.index);
     }
 
     updateSubSection(subSections, subSection,sectionId,index){

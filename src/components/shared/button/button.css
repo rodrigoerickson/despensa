@@ -8,3 +8,15 @@
     background-color: var(--bg-button);
     border: var(--border-button);
 }
+
+.button:focus {
+    box-shadow: unset !important;
+}
+
+.button:active .icon-button, .icon-button:active {
+    color: teal;
+}
+
+.button:hover .icon-button, .icon-button:hover {
+    font-size: 20px;
+}
