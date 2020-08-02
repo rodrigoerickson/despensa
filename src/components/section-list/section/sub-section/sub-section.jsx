@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from '../../../shared/button/button'
 import axios from 'axios';
+
 const URL = 'http://localhost:3003/api';
 
 export default class SubSection extends Component {
@@ -15,12 +16,14 @@ export default class SubSection extends Component {
     lineSubSection = (section, add, remove) => {
         return section.subSections.map((val, index) => {
             return (
-                <div key={val._id}>
-                    <div>
-                        {val.name} - 
-                        {val.amount} 
-                        <Button label="adicionar" sectionId={section._id} subSection={val} click={add} index={index}></Button> 
-                        <Button label="remover" sectionId={section._id} subSection={val} click={remove} index={index}></Button>
+                <div key={val._id} className="d-flex justify-content-center">
+                    <div className="row w-75 d-flex justify-content-center">
+                        <div className="col-3">{val.name}</div>
+                        <div className="col-1">{val.amount}</div>
+                        <div className="col-4">
+                            <Button label="adicionar" sectionId={section._id} subSection={val} click={add} index={index}></Button> 
+                            <Button label="remover" sectionId={section._id} subSection={val} click={remove} index={index}></Button>
+                        </div>
                     </div>
                 </div>
             )
