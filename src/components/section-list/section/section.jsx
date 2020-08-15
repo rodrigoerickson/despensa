@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonComponent from '../../shared/button/button';
+import CreateSubSection from './create-sub-section/create-sub-section'
 
 import { Accordion, Card, Button } from 'react-bootstrap/';
 import SubSection from './sub-section/sub-section'
@@ -17,6 +17,7 @@ function Section(props) {
                 <Accordion.Collapse eventKey="1">
                     <Card.Body>
                         <SubSection subSections={props.section}></SubSection>
+                        <CreateSubSection sectionId={props.section._id} />
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>

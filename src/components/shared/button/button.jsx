@@ -5,6 +5,7 @@ import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 const Button = props =>
     <button
         onClick={e => props.click(props.variables)}
+        variables={props.variables}
         className='button btn'>
             {props.label}
         </button>
