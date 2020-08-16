@@ -14,23 +14,32 @@ export default class CreateSubSection extends Component {
     }
     
     button(sectionId, inputValue){
-        return (<Button label="Adicionar" variables={{sectionId:sectionId, inputValue:inputValue}} click={this.addNewSubSection} />)
+        return (
+            <Button
+                label="Adicionar"
+                variables={{sectionId:sectionId, inputValue:inputValue}}
+                click={this.addNewSubSection} />
+        )
     }
 
     input(){
-        return (<input type="text" value={this.state.inputValue} onChange={(e) => 
-            {this.setState({ inputValue: e.target.value })}
-        } />)            
+        return (
+            <input
+                type="text"
+                value={this.state.inputValue}
+                onChange={(e) => {this.setState({ inputValue: e.target.value })}} />
+        )
     }
 
     addNewSubSection(variables){
         axios.get(`${URL}sections/${variables.sectionId}?sort=createdAt`)
-        .then(resp => {
-            const requestBody = JSON.parse(`
-                {"subSections.${resp.data.subSections.length}.amount":"0","subSections.${resp.data.subSections.length}.name":"${variables.inputValue}"}
-            `);
-            axios.put(`${URL}/sections/${variables.sectionId}`, requestBody).then((r)=>{})  
-        })
+            .then(resp => {
+                const requestBody = JSON.parse(`
+                    {"subSections.${resp.data.subSections.length}.amount":"0",
+                    "subSections.${resp.data.subSections.length}.name":"${variables.inputValue}"}
+                `);
+                axios.put(`${URL}/sections/${variables.sectionId}`, requestBody).then((r)=>{})  
+            })
     }
 
     render() {

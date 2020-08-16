@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import {ButtonAiFillPlusCircle, ButtonAiFillMinusCircle} from '../../../shared/button/button'
 import axios from 'axios';
+import './sub-section.css'
+
 
 const URL = 'http://localhost:3003/api';
+
 
 export default class SubSection extends Component {
 
@@ -22,7 +25,7 @@ export default class SubSection extends Component {
             }
             return (
                 <div key={val._id} className="d-flex justify-content-center">
-                    <div className="row w-75 d-flex justify-content-center">
+                    <div className="subSection-line-border row w-75 d-flex justify-content-center">
                         <div className="col-3">{val.name}</div>
                         <div className="col-1">{val.amount}</div>
                         <div className="col-4">
