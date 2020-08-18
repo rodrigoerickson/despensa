@@ -8,7 +8,8 @@ export default class CreateSubSection extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputValue:''
+            inputValue:'',
+            // ...props
         };
         
     }
@@ -38,7 +39,10 @@ export default class CreateSubSection extends Component {
                     {"subSections.${resp.data.subSections.length}.amount":"0",
                     "subSections.${resp.data.subSections.length}.name":"${variables.inputValue}"}
                 `);
-                axios.put(`${URL}/sections/${variables.sectionId}`, requestBody).then((r)=>{})  
+                axios.put(`${URL}/sections/${variables.sectionId}`, requestBody).then((r)=>{
+                    // console.log(this.props)
+                    // console.log(this.state)
+                })  
             })
     }
 
