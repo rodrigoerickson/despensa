@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Section from './section/section';
 import axios from 'axios';
 import Button from '../shared/button/button';
+import { render } from '@testing-library/react';
 
 const URL = 'http://localhost:3003/api/';
 
@@ -12,6 +13,7 @@ export default class SectionList extends Component {
             list: [],
             inputValue: ''
         };
+        this.getSections = this.getSections.bind(this);
         this.getSections();
     }
 
@@ -19,13 +21,13 @@ export default class SectionList extends Component {
         axios.get(`${URL}sections?sort=createdAt`)
             .then(resp => {
                 this.setState({ ...this.state, list: resp.data });
+                render();
             })
     }
 
     addNewSection(variables) {
         const requestBody = JSON.parse(`{"name":"${variables.inputValue}"}`);
         axios.post(`${URL}/sections/`, requestBody).then((r) => {})
-
     }
 
     render() {
@@ -40,7 +42,7 @@ export default class SectionList extends Component {
                     click={this.addNewSection} />
                 <div>
                     {this.state.list.map((val) => {
-                        return <Section key={val._id} section={val} />
+                        return <Section key={val._id} section={val} refresh={this.getSections} />
                     })}
                 </div>
             </>
