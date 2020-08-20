@@ -3,6 +3,8 @@ import CreateSubSection from './create-sub-section/create-sub-section'
 import axios from 'axios';
 import { Accordion, Card, Button } from 'react-bootstrap/';
 import SubSection from './sub-section/sub-section'
+import DeleteSectionf from '../section/delete-section/delete-section'
+
 const URL = 'http://localhost:3003/api/';
 
 function Section(props) {
@@ -27,6 +29,10 @@ function Section(props) {
             })
     }
 
+    function deleteSection(variables){
+        axios.delete(`${URL}/sections/${variables.sectionId}`).then((resp)=>{})
+    }
+
     return (
         <Accordion defaultActiveKey="0">
             <Card>
@@ -49,6 +55,7 @@ function Section(props) {
                         })} */}
                         {/* <CreateSubSection newSubSection={newSubSection} sectionId={section._id} /> */}
                         <CreateSubSection handleAddSubsection={handleAddSubsection} sectionId={section._id} />
+                        <DeleteSectionf variables={{sectionId:section._id}} click={deleteSection}></DeleteSectionf>
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
