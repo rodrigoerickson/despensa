@@ -32,20 +32,6 @@ export default class CreateSubSection extends Component {
         )
     }
 
-    // addNewSubSection(variables){
-    //     axios.get(`${URL}sections/${variables.sectionId}?sort=createdAt`)
-    //         .then(resp => {
-    //             const requestBody = JSON.parse(`
-    //                 {"subSections.${resp.data.subSections.length}.amount":"0",
-    //                 "subSections.${resp.data.subSections.length}.name":"${variables.inputValue}"}
-    //             `);
-    //             axios.put(`${URL}/sections/${variables.sectionId}`, requestBody).then((r)=>{
-    //                 // console.log(this.props)
-    //                 // console.log(this.state)
-    //             })  
-    //         })
-    // }
-
     render() {
         return (<div>{this.input()} {this.button(this.props.sectionId, this.state.inputValue)}</div>);
     }
