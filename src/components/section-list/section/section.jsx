@@ -30,7 +30,9 @@ function Section(props) {
     }
 
     function deleteSection(variables){
-        axios.delete(`${URL}/sections/${variables.sectionId}`).then((resp)=>{})
+        axios.delete(`${URL}/sections/${variables.sectionId}`).then((resp)=>{
+            variables.refresh();
+        })
     }
 
     return (
@@ -55,7 +57,7 @@ function Section(props) {
                         })} */}
                         {/* <CreateSubSection newSubSection={newSubSection} sectionId={section._id} /> */}
                         <CreateSubSection handleAddSubsection={handleAddSubsection} sectionId={section._id} />
-                        <DeleteSectionf variables={{sectionId:section._id}} click={deleteSection}></DeleteSectionf>
+                        <DeleteSectionf variables={{sectionId:section._id, refresh:props.refresh}} click={deleteSection}></DeleteSectionf>
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>

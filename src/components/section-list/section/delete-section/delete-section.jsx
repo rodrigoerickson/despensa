@@ -11,7 +11,7 @@ export default class DeleteSectionf extends Component {
         return (
             <Button
                 label="Remover"
-                variables={{sectionId:variables.sectionId}}
+                variables={{sectionId:variables.sectionId, refresh:variables.refresh}}
                 click={this.props.click} />
         )
     }
