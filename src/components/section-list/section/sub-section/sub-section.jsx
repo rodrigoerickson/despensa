@@ -30,7 +30,7 @@ export default class SubSection extends Component {
                         <div className="col-1">{val.amount}</div>
                         <div className="col-4">
                             <ButtonAiFillPlusCircle  variables={variables} click={add}></ButtonAiFillPlusCircle>
-                            <ButtonAiFillMinusCircle  variables={variables} click={remove}></ButtonAiFillMinusCircle>zz
+                            <ButtonAiFillMinusCircle  variables={variables} click={remove}></ButtonAiFillMinusCircle>
                         </div>
                     </div>
                 </div>
