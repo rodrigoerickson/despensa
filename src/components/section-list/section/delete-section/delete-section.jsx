@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import Button from '../../../shared/button/button';
 
-export default class DeleteSectionf extends Component {
+export default class DeleteSection extends Component {
     
     constructor(props) {
         super(props);        
