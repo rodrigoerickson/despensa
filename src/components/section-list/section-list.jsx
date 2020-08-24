@@ -42,9 +42,13 @@ export default class SectionList extends Component {
                     variables={{ inputValue: this.state.inputValue }}
                     click={this.addNewSection} />
                 <div><br />
-                    {this.state.list.map((val) => {
-                        return <Section key={val._id} section={val} refresh={this.getSections} />
-                    })}
+                    {
+                        (this.state.list.length)?
+                            this.state.list.map((val) => {
+                                return <Section key={val._id} section={val} refresh={this.getSections} />
+                            })
+                            :<span>Lista vazia</span>
+                    }
                 </div>
             </>
         );
