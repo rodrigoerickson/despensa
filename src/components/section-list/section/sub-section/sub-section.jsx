@@ -17,7 +17,9 @@ export default class SubSection extends Component {
     }
 
     lineSubSection = (section, add, remove) => {
-        return section.subSections.map((val, index) => {
+        
+        return (section.subSections.length)?
+        section.subSections.map((val, index) => {
             const variables = {
                 sectionId:section._id,
                 subSection:val,
@@ -36,6 +38,7 @@ export default class SubSection extends Component {
                 </div>
             )
         })
+        :<span>SubList vazia.</span>
     }
 
     getSubSectionUpdateAmount(subSections, amount, index, subSection){
