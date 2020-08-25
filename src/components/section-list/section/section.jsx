@@ -5,7 +5,9 @@ import { Accordion, Card, Button } from 'react-bootstrap/';
 import SubSection from './sub-section/sub-section'
 import DeleteSection from '../section/delete-section/delete-section'
 
-const URL = 'http://localhost:3003/api/';
+import {environment} from '../../../environment'
+
+const URL = environment.api;
 
 function Section(props) {
     const [section, setSection] = useState(props.section);
@@ -46,7 +48,7 @@ function Section(props) {
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
                     <Card.Body>
-                        <SubSection subSections={section.subSections}></SubSection>
+                        <SubSection sectionId={section._id} subSections={section.subSections}></SubSection>
                         {/* {section.subSections.map((v)=>{
                             return (
                                 <>

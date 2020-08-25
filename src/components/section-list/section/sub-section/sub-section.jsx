@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import {ButtonAiFillPlusCircle, ButtonAiFillMinusCircle} from '../../../shared/button/button'
 import axios from 'axios';
 import './sub-section.css'
+import {environment} from '../../../../environment'
 
-
-const URL = 'http://localhost:3003/api';
-
+const URL = environment.api;
 
 export default class SubSection extends Component {
 
@@ -21,7 +20,7 @@ export default class SubSection extends Component {
         return (section.subSections.length)?
         section.subSections.map((val, index) => {
             const variables = {
-                sectionId:section._id,
+                sectionId:section.sectionId,
                 subSection:val,
                 index
             }

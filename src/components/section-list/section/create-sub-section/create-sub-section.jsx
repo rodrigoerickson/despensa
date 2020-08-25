@@ -1,7 +1,9 @@
 import React, { Component} from 'react';
 import Button from '../../../shared/button/button';
 import axios from 'axios';
-const URL = 'http://localhost:3003/api/';
+import {environment} from '../../../../environment'
+
+const URL = environment.api;
 
 export default class CreateSubSection extends Component {
     
