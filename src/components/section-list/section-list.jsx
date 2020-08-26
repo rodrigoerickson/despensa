@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Section from './section/section';
 import axios from 'axios';
 import Button from '../shared/button/button';
-
 import {environment} from '../../environment'
 
 const URL = environment.api;
@@ -21,10 +20,10 @@ export default class SectionList extends Component {
 
     getSections() {
         axios.get(`${URL}sections?sort=createdAt`)
-            .then(resp => {
-                this.setState({ ...this.state, list: resp.data });
+            .then(async (resp) => {
+                await this.setState({list: resp.data });    
             })
-    }
+        }
 
     addNewSection(variables) {
         const requestBody = JSON.parse(`{"name":"${variables.inputValue}"}`);

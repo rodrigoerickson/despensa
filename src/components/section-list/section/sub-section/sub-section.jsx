@@ -52,12 +52,12 @@ export default class SubSection extends Component {
     }
 
     add(variables){
-        const subSections = this.getSubSectionUpdateAmount(this.state.subSections,parseInt(variables.subSection.amount)+1, variables.index, variables.subSection);
+        const subSections = this.getSubSectionUpdateAmount(this.props.subSections,parseInt(variables.subSection.amount)+1, variables.index, variables.subSection);
         this.updateSubSection(subSections, variables.subSection,variables.sectionId,variables.index);
     }
     
     remove(variables){
-        const subSections = this.getSubSectionUpdateAmount(this.state.subSections,parseInt(variables.subSection.amount)-1, variables.index, variables.subSection);
+        const subSections = this.getSubSectionUpdateAmount(this.props.subSections,parseInt(variables.subSection.amount)-1, variables.index, variables.subSection);
         this.updateSubSection(subSections, variables.subSection,variables.sectionId,variables.index);
     }
 
@@ -74,6 +74,6 @@ export default class SubSection extends Component {
     }
 
     render() {
-        return (<div>{this.lineSubSection(this.state, this.add, this.remove)}</div>);
+        return (<div>{this.lineSubSection(this.props, this.add, this.remove)}</div>);
     }
 }

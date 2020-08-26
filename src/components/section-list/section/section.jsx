@@ -10,7 +10,8 @@ import {environment} from '../../../environment'
 const URL = environment.api;
 
 function Section(props) {
-    const [section, setSection] = useState(props.section);
+    // const [section, setSection] = useState(props.section);
+    const section = props.section;
 
     // function newSubSection(subSection){
     //     console.log(subSection);
@@ -26,7 +27,7 @@ function Section(props) {
                     "subSections.${resp.data.subSections.length}.name":"${variables.inputValue}"}
                 `);
                 axios.put(`${URL}/sections/${variables.sectionId}`, requestBody).then((r)=>{
-                    props.refresh();
+                    variables.refresh();
                 })  
             })
     }
@@ -49,16 +50,8 @@ function Section(props) {
                 <Accordion.Collapse eventKey="1">
                     <Card.Body>
                         <SubSection sectionId={section._id} subSections={section.subSections}></SubSection>
-                        {/* {section.subSections.map((v)=>{
-                            return (
-                                <>
-                                    <span>{v.name}</span>
-                                    <br />
-                                </>
-                            )
-                        })} */}
                         {/* <CreateSubSection newSubSection={newSubSection} sectionId={section._id} /> */}
-                        <CreateSubSection handleAddSubsection={handleAddSubsection} sectionId={section._id} />
+                        <CreateSubSection handleAddSubsection={handleAddSubsection} variables={{sectionId:section._id, refresh:props.refresh}} />
                         <DeleteSection variables={{sectionId:section._id, refresh:props.refresh}} click={deleteSection}></DeleteSection>
                     </Card.Body>
                 </Accordion.Collapse>
