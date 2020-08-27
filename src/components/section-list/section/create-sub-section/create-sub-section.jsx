@@ -1,19 +1,13 @@
 import React, { Component} from 'react';
 import Button from '../../../shared/button/button';
-import axios from 'axios';
-import {environment} from '../../../../environment'
-
-const URL = environment.api;
 
 export default class CreateSubSection extends Component {
     
     constructor(props) {
         super(props);
         this.state = {
-            inputValue:'',
-            // ...props
+            inputValue:''
         };
-        
     }
     
     button(sectionId,refresh, inputValue){
