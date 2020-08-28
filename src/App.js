@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import PageSections from './pages/section-list'
+import PageSections from './pages/sections'
 
 function App() {
     return (

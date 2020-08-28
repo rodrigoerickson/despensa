@@ -3,6 +3,7 @@ import Section from '../components/section-list/section/section';
 import axios from 'axios';
 import Button from '../components/shared/button/button';
 import {environment} from '../environment'
+import CreateSubSection from '../components/section-list/section/create-section/crate-section'
 
 const URL = environment.api;
 
@@ -35,14 +36,9 @@ export default class PageSections extends Component {
     render() {
         return (
             <>
-                <input
-                    type="text"
-                    value={this.state.newSectionInputVal}
-                    onChange={(e) => { this.setState({ newSectionInputVal: e.target.value }) }} />
-                <Button label="Adicionar"
-                    variables={{ newSectionInputVal: this.state.newSectionInputVal }}
-                    click={this.addNewSection} />
-                <div><br />
+
+                <CreateSubSection addNewSection={this.addNewSection} variables={{ newSectionInputVal: this.state.newSectionInputVal }} />
+                <>
                     {
                         (this.state.sections.length)?
                             this.state.sections.map((val) => {
@@ -50,7 +46,7 @@ export default class PageSections extends Component {
                             })
                             :<span>Lista vazia</span>
                     }
-                </div>
+                </>
             </>
         );
     }
