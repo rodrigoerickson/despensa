@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import SectionList from './components/section-list/section-list'
+import PageSections from './pages/section-list'
 
 function App() {
     return (
@@ -11,7 +11,7 @@ function App() {
             </h3>
             <hr />
             <div className="mt-3">
-                <SectionList />
+                <PageSections />
             </div>
         </div>
     );
