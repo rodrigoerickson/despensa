@@ -27,7 +27,7 @@ export default class PageSections extends Component {
 
     addNewSection(variables) {
         const requestBody = JSON.parse(`{"name":"${variables.newSectionInputVal}"}`);
-        axios.post(`${URL}/sections/`, requestBody).then(r => {
+        axios.post(`${URL}/sections/`, requestBody).then(_ => {
             this.refreshSections();
         })
     }
