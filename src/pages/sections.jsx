@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Section from '../components/section-list/section/section';
 import axios from 'axios';
-import Button from '../components/shared/button/button';
 import {environment} from '../environment'
 import CreateSubSection from '../components/section-list/section/create-section/crate-section'
 
