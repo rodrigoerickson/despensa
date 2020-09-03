@@ -38,8 +38,8 @@ export default class PageSections extends Component {
                 <>
                     {
                         (this.state.sections.length)?
-                            this.state.sections.map((val) => {
-                                return <Section key={val._id} section={val} refresh={this.refreshSections} />
+                            this.state.sections.map((section) => {
+                                return <Section key={section._id} section={section} refresh={this.refreshSections} />
                             })
                             :<span>Lista vazia</span>
                     }
