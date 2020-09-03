@@ -10,7 +10,7 @@ export default class CreateSection extends Component {
         };
     }
     
-    button(newSectionInputVal, addNewSection){
+    buttonAddNewSection(newSectionInputVal, addNewSection){
         return (
             <Button
                 label="Adicionar"
@@ -19,16 +19,19 @@ export default class CreateSection extends Component {
         )
     }
 
-    input(newSectionInputVal){
+    inputNewSection(newSectionInputVal){
         return (
             <input
                 type="text"
                 value={newSectionInputVal}
-                onChange={(e) => {this.setState({ newSectionInputVal: e.target.value })}} />
+                onChange={e => {this.setState({ newSectionInputVal: e.target.value })}} />
         )
     }
 
     render() {
-        return (<div>{this.input(this.state.newSectionInputVal, this.setState)} {this.button(this.state.newSectionInputVal, this.props.addNewSection)}</div>);
+        return (<>
+                {this.inputNewSection(this.state.newSectionInputVal)}
+                {this.buttonAddNewSection(this.state.newSectionInputVal, this.props.addNewSection)}
+            </>);
     }
 }
