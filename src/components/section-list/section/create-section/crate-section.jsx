@@ -14,7 +14,7 @@ export default class CreateSection extends Component {
         return (
             <Button
                 label="Adicionar"
-                variables={{newSectionInputVal:newSectionInputVal}}
+                variables={{newSectionInputVal}}
                 click={addNewSection} />
         )
     }

@@ -14,6 +14,7 @@ export default class PageSections extends Component {
         };
         this.refreshSections = this.refreshSections.bind(this);
         this.addNewSection = this.addNewSection.bind(this);
+        this.removeSection = this.removeSection.bind(this);
         this.refreshSections();
     }
 
@@ -31,6 +32,12 @@ export default class PageSections extends Component {
         })
     }
 
+    removeSection(variables) {
+        axios.delete(`${URL}/sections/${variables.sectionId}`).then((resp)=>{
+            this.refreshSections();
+        })
+    }
+
     render() {
         return (
             <>
@@ -39,7 +46,12 @@ export default class PageSections extends Component {
                     {
                         (this.state.sections.length)?
                             this.state.sections.map((section) => {
-                                return <Section key={section._id} section={section} refresh={this.refreshSections} />
+                                return <Section 
+                                    key={section._id} 
+                                    section={section} 
+                                    refresh={this.refreshSections} 
+                                    remove={this.removeSection} 
+                                    />
                             })
                             :<span>Lista vazia</span>
                     }
