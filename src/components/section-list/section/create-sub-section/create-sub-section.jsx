@@ -10,12 +10,12 @@ export default class CreateSubSection extends Component {
         };
     }
     
-    button(sectionId,refresh, inputValue){
+    button(variables, addNewSubSection){
         return (
             <Button
                 label="Adicionar"
-                variables={{sectionId:sectionId,refresh:refresh, inputValue:inputValue}}
-                click={this.props.addNewSubSection} />
+                variables={{...variables}}
+                click={addNewSubSection} />
         )
     }
 
@@ -29,6 +29,18 @@ export default class CreateSubSection extends Component {
     }
 
     render() {
-        return (<div>{this.input()} {this.button(this.props.variables.sectionId, this.props.variables.refresh, this.state.inputValue)}</div>);
+        return (<div>
+                {this.input()} 
+                {
+                    this.button(
+                        {
+                            sectionId:this.props.variables.sectionId, 
+                            refresh:this.props.variables.refresh, 
+                            inputValue:this.state.inputValue,
+                        },
+                        this.props.addNewSubSection
+                    )
+                }
+                </div>);
     }
 }
