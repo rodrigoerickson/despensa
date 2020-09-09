@@ -15,7 +15,7 @@ export default class CreateSubSection extends Component {
             <Button
                 label="Adicionar"
                 variables={{sectionId:sectionId,refresh:refresh, inputValue:inputValue}}
-                click={this.props.handleAddSubsection} />
+                click={this.props.addNewSubSection} />
         )
     }
 

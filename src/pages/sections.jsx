@@ -15,6 +15,7 @@ export default class PageSections extends Component {
         this.refreshSections = this.refreshSections.bind(this);
         this.addNewSection = this.addNewSection.bind(this);
         this.removeSection = this.removeSection.bind(this);
+        this.addNewSubSection = this.addNewSubSection.bind(this);
         this.refreshSections();
     }
 
@@ -38,6 +39,19 @@ export default class PageSections extends Component {
         })
     }
 
+    addNewSubSection(variables){
+        axios.get(`${URL}sections/${variables.sectionId}?sort=createdAt`)
+            .then(resp => {
+                const requestBody = JSON.parse(`
+                    {"subSections.${resp.data.subSections.length}.amount":"0",
+                    "subSections.${resp.data.subSections.length}.name":"${variables.inputValue}"}
+                `);
+                axios.put(`${URL}/sections/${variables.sectionId}`, requestBody).then((r)=>{
+                    variables.refresh();
+                })  
+            })
+    }
+
     render() {
         return (
             <>
@@ -51,6 +65,7 @@ export default class PageSections extends Component {
                                     section={section} 
                                     refresh={this.refreshSections} 
                                     remove={this.removeSection} 
+                                    addNewSubSection={this.addNewSubSection}
                                     />
                             })
                             :<span>Lista vazia</span>
