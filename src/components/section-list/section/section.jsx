@@ -1,10 +1,8 @@
 import React from 'react';
 import CreateSubSection from './create-sub-section/create-sub-section'
-import axios from 'axios';
 import { Accordion, Card, Button } from 'react-bootstrap/';
 import SubSection from './sub-section/sub-section'
 import DeleteSection from '../section/delete-section/delete-section'
-import {environment} from '../../../environment'
 
 function Section(props) {
     const section = props.section;
