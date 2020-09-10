@@ -40,7 +40,7 @@ export default class SubSection extends Component {
         :<span>SubList vazia.</span>
     }
 
-    getSubSectionUpdateAmount(subSections, amount, index, subSection){
+    getSubSectionsUpdatedAmount(subSections, amount, index, subSection){
         return subSections.map((val,i)=>{
             if(index === i){
                 subSection.amount = amount
@@ -52,13 +52,13 @@ export default class SubSection extends Component {
     }
 
     add(variables){
-        const subSections = this.getSubSectionUpdateAmount(this.props.subSections,parseInt(variables.subSection.amount)+1, variables.index, variables.subSection);
-        this.updateSubSection(subSections, variables.subSection,variables.sectionId,variables.index);
+        const subSectionsUpdated = this.getSubSectionsUpdatedAmount(this.props.subSections,parseInt(variables.subSection.amount)+1, variables.index, variables.subSection);
+        this.updateSubSection(subSectionsUpdated, variables.subSection,variables.sectionId,variables.index);
     }
     
     remove(variables){
-        const subSections = this.getSubSectionUpdateAmount(this.props.subSections,parseInt(variables.subSection.amount)-1, variables.index, variables.subSection);
-        this.updateSubSection(subSections, variables.subSection,variables.sectionId,variables.index);
+        const subSectionsUpdated = this.getSubSectionsUpdatedAmount(this.props.subSections,parseInt(variables.subSection.amount)-1, variables.index, variables.subSection);
+        this.updateSubSection(subSectionsUpdated, variables.subSection,variables.sectionId,variables.index);
     }
 
     updateSubSection(subSections, subSection,sectionId,index){
