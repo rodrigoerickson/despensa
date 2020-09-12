@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import {ButtonAiFillPlusCircle, ButtonAiFillMinusCircle} from '../../../shared/button/button'
-import axios from 'axios';
 import './sub-section.css'
-import {environment} from '../../../../environment'
-
-const URL = environment.api;
 
 export default class SubSection extends Component {
 
@@ -52,26 +48,19 @@ export default class SubSection extends Component {
     }
 
     add(variables){
-        const subSectionsUpdated = this.getSubSectionsUpdatedAmount(this.props.subSections,parseInt(variables.subSection.amount)+1, variables.index, variables.subSection);
-        this.updateSubSection(subSectionsUpdated, variables.subSection,variables.sectionId,variables.index);
+        this.getSubSectionsUpdatedAmount(this.props.subSections,parseInt(variables.subSection.amount)+1, variables.index, variables.subSection);
+        this.updateSubSection(variables.subSection,variables.sectionId,variables.index);
     }
     
     remove(variables){
-        const subSectionsUpdated = this.getSubSectionsUpdatedAmount(this.props.subSections,parseInt(variables.subSection.amount)-1, variables.index, variables.subSection);
-        this.updateSubSection(subSectionsUpdated, variables.subSection,variables.sectionId,variables.index);
+        this.getSubSectionsUpdatedAmount(this.props.subSections,parseInt(variables.subSection.amount)-1, variables.index, variables.subSection);
+        this.updateSubSection(variables.subSection,variables.sectionId,variables.index);
     }
 
-    updateSubSection(subSections, subSection,sectionId,index){
-        this.setState({subSections})
-        this.putSubSection(subSection, sectionId, index);
+    updateSubSection(subSection,sectionId,index){
+        this.props.putSubSection(subSection, sectionId, index)
     }
-    
-    putSubSection(subSection, sectionId, index){
-        const requestBody = JSON.parse(`{"subSections.${index}.amount":"${subSection.amount}"}`);
-        axios.put(`${URL}/sections/${sectionId}`, requestBody).then((resp)=>{
-            this.setState({...resp.data})
-        })
-    }
+
 
     render() {
         return (<div>{this.lineSubSection(this.props, this.add, this.remove)}</div>);

@@ -16,6 +16,7 @@ export default class PageSections extends Component {
         this.addNewSection = this.addNewSection.bind(this);
         this.removeSection = this.removeSection.bind(this);
         this.addNewSubSection = this.addNewSubSection.bind(this);
+        this.putSubSection = this.putSubSection.bind(this);
         this.refreshSections();
     }
 
@@ -52,6 +53,13 @@ export default class PageSections extends Component {
             })
     }
 
+    putSubSection(subSection, sectionId, index){
+        const requestBody = JSON.parse(`{"subSections.${index}.amount":"${subSection.amount}"}`);
+        axios.put(`${URL}/sections/${sectionId}`, requestBody).then((resp)=>{
+            this.setState({...resp.data})
+        })
+    }
+
     render() {
         return (
             <>
@@ -66,6 +74,7 @@ export default class PageSections extends Component {
                                     refresh={this.refreshSections} 
                                     remove={this.removeSection} 
                                     addNewSubSection={this.addNewSubSection}
+                                    putSubSection={this.putSubSection}
                                     />
                             })
                             :<span>Lista vazia</span>

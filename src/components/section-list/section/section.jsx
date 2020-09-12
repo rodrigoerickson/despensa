@@ -16,7 +16,7 @@ function Section(props) {
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
                     <Card.Body>
-                        <SubSection sectionId={section._id} subSections={section.subSections}></SubSection>
+                        <SubSection sectionId={section._id} subSections={section.subSections} putSubSection={props.putSubSection}></SubSection>
                         <CreateSubSection addNewSubSection={props.addNewSubSection} variables={{sectionId:section._id, refresh:props.refresh}} />
                         <DeleteSection variables={{sectionId:section._id, refresh:props.refresh}} click={props.remove}></DeleteSection>
                     </Card.Body>
