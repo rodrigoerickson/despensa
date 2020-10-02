@@ -53,10 +53,10 @@ export default class PageSections extends Component {
             })
     }
 
-    putSubSection(subSection, sectionId, index){
-        const requestBody = JSON.parse(`{"subSections.${index}.amount":"${subSection.amount}"}`);
+    putSubSection(sectionId, index, amount){
+        const requestBody = JSON.parse(`{"subSections.${index}.amount":"${amount}"}`);
         axios.put(`${URL}/sections/${sectionId}`, requestBody).then((resp)=>{
-            this.setState({...resp.data})
+            this.refreshSections();
         })
     }
 

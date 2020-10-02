@@ -36,31 +36,17 @@ export default class SubSection extends Component {
         :<span>SubList vazia.</span>
     }
 
-    getSubSectionsUpdatedAmount(subSections, amount, index, subSection){
-        return subSections.map((val,i)=>{
-            if(index === i){
-                subSection.amount = amount
-                return subSection
-            }else{
-                return val
-            }
-        })
-    }
-
     add(variables){
-        this.getSubSectionsUpdatedAmount(this.props.subSections,parseInt(variables.subSection.amount)+1, variables.index, variables.subSection);
-        this.updateSubSection(variables.subSection,variables.sectionId,variables.index);
+        this.updateSubSection(variables.sectionId,variables.index, parseInt(variables.subSection.amount)+1);
     }
     
     remove(variables){
-        this.getSubSectionsUpdatedAmount(this.props.subSections,parseInt(variables.subSection.amount)-1, variables.index, variables.subSection);
-        this.updateSubSection(variables.subSection,variables.sectionId,variables.index);
+        this.updateSubSection(variables.sectionId,variables.index, parseInt(variables.subSection.amount)-1);
     }
 
-    updateSubSection(subSection,sectionId,index){
-        this.props.putSubSection(subSection, sectionId, index)
+    updateSubSection(sectionId,index, amout){
+        this.props.putSubSection(sectionId, index, amout)
     }
-
 
     render() {
         return (<div>{this.lineSubSection(this.props, this.add, this.remove)}</div>);
