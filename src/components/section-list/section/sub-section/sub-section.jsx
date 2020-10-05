@@ -8,7 +8,6 @@ export default class SubSection extends Component {
         super(props);
         this.add = this.add.bind(this);
         this.remove = this.remove.bind(this);
-        this.state = {...props};
     }
 
     lineSubSection = (section, add, remove) => {
