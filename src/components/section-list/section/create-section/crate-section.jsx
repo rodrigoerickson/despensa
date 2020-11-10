@@ -1,16 +1,20 @@
-import React, { Component} from 'react';
+import React, {useState} from 'react';
 import Button from '../../../shared/button/button';
 
-export default class CreateSection extends Component {
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-            newSectionInputVal:''
-        };
+const CreateSection = (props) => {
+
+    const [newSectionInputVal, setNewSectionInputVal] = useState('');
+
+     const InputNewSection = (newSectionInputVal) =>{
+        return (
+            <input
+                type="text"
+                value={newSectionInputVal}
+                onChange={e => {setNewSectionInputVal(e.target.value )}} />
+        )
     }
-    
-    buttonAddNewSection(newSectionInputVal, addNewSection){
+
+    const buttonAddNewSection = (newSectionInputVal, addNewSection) =>{
         return (
             <Button
                 label="Adicionar"
@@ -19,19 +23,10 @@ export default class CreateSection extends Component {
         )
     }
 
-    inputNewSection(newSectionInputVal){
-        return (
-            <input
-                type="text"
-                value={newSectionInputVal}
-                onChange={e => {this.setState({ newSectionInputVal: e.target.value })}} />
-        )
-    }
-
-    render() {
-        return (<>
-                {this.inputNewSection(this.state.newSectionInputVal)}
-                {this.buttonAddNewSection(this.state.newSectionInputVal, this.props.addNewSection)}
-            </>);
-    }
+    return (
+        <>
+            {InputNewSection(newSectionInputVal)}
+            {buttonAddNewSection(newSectionInputVal, props.addNewSection)}
+        </>);
 }
+export default CreateSection;
